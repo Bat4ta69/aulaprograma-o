@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>CIEP-316 · Lógica de Programação – Versão Completa</title>
+  <meta name="description" content="Site didático completo para aula de lógica de programação no CIEP-316: conteúdos detalhados, exercícios interativos, playground e introdução a HTML, CSS, front‑end e back‑end." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="#top">CIEP‑316 · Lógica</a>
+      <button class="nav-toggle" aria-label="Abrir menu" onclick="toggleMenu()">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#inicio">Início</a>
+        <a href="#logica">Lógica</a>
+        <a href="#exemplos">Exemplos</a>
+        <a href="#exercicios">Exercícios</a>
+        <a href="#playground">Playground</a>
+        <a href="#htmlcss">HTML & CSS</a>
+        <a href="#frontend-backend">Front‑end & Back‑end</a>
+        <a href="#linguagens">Linguagens</a>
+        <a href="#glossario">Glossário</a>
+        <a href="#recursos">Recursos</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- Início / Hero -->
+    <section id="inicio" class="section hero">
+      <div class="hero-text">
+        <span class="badge">CIEP‑316 GENERAL LADÁRIO PEREIRA TELLES</span>
+        <h1>Introdução super didática à Lógica de Programação</h1>
+        <p class="lead">
+          Este site guia você passo a passo: do <strong>zero absoluto</strong> até seus primeiros
+          programas. Cada capítulo tem explicações simples, analogias do dia a dia, exemplos comentados,
+          quizzes e desafios práticos. E você ainda pode <strong>programar aqui mesmo</strong> no
+          <em>Playground</em> integrado.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#playground">▶ Começar no Playground</a>
+          <button class="btn" onclick="imprimirPDF()">🖨️ Gerar PDF</button>
+        </div>
+        <div class="progress-wrap">
+          <label class="pill">Seu progresso</label>
+          <div class="progress" aria-label="Progresso geral"><div class="progress-bar" id="progressBar" style="width:0%"></div></div>
+          <small class="muted" id="progressInfo">0% concluído</small>
+        </div>
+      </div>
+      <div class="hero-card card">
+        <h3>Como usar este site</h3>
+        <ol>
+          <li>Leia a explicação do tema.</li>
+          <li>Experimente os exemplos no Playground.</li>
+          <li>Responda os quizzes e faça os exercícios.</li>
+          <li>Marque a seção como concluída.</li>
+        </ol>
+        <button class="btn" onclick="marcarSecao('inicio')">Marcar seção como concluída</button>
+      </div>
+    </section>
+
+    <!-- Lógica -->
+    <section id="logica" class="section">
+      <div class="section-header">
+        <h2>1) Lógica de Programação</h2>
+        <label class="check"><input type="checkbox" data-section="logica" onchange="toggleConcluida(this)"> Marcar como concluída</label>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>1.1 — O que é um algoritmo?</h3>
+          <p>
+            Um <strong>algoritmo</strong> é uma receita: uma lista finita de passos para alcançar um objetivo.
+            Assim como uma receita de bolo, ele precisa ser <em>claro</em> (qualquer pessoa deve entender),
+            <em>ordenado</em> (tem começo, meio e fim) e <em>detalhado</em> (sem saltar etapas importantes).
+          </p>
+          <p><strong>Exemplo do cotidiano:</strong> “ir à escola”.</p>
+          <pre><code>ALGORITMO IR À ESCOLA
+1. Acordar às 06:30
+2. Escovar os dentes
+3. Tomar café da manhã
+4. Colocar o uniforme
+5. Pegar o material
+6. Ir até o ponto e pegar o ônibus
+7. Descer no CIEP-316
+8. Entrar em sala
+FIM</code></pre>
+          <p>
+            Em programação, fazemos a mesma coisa, só que usando uma linguagem que o computador entende.
+            Para treinar o pensamento, usamos <strong>pseudocódigo</strong> (português estruturado).
+          </p>
+        </article>
+        <article class="card">
+          <h3>1.2 — Pseudocódigo (português estruturado)</h3>
+          <p>
+            É escrever o algoritmo como se fosse código, mas ainda em português. Isso ajuda a pensar passo a passo
+            antes de escolher a linguagem. Exemplo: <em>suco de laranja</em>.
+          </p>
+          <pre><code>ALGORITMO SUCO DE LARANJA
+pegar 3 laranjas
+cortar ao meio
+espremer no copo
+adicionar água e açúcar a gosto
+mexer e servir
+FIM</code></pre>
+          <div class="quiz" data-id="q1" data-answer="b">
+            <p><strong>Quiz rápido:</strong> O que é um algoritmo?</p>
+            <label><input type="radio" name="q1" value="a"> Um programa de celular</label>
+            <label><input type="radio" name="q1" value="b"> Sequência de passos para resolver um problema</label>
+            <label><input type="radio" name="q1" value="c"> Uma forma de desenhar telas</label>
+            <button class="btn small" onclick="verificarQuiz('q1')">Verificar</button>
+            <p class="feedback"></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>1.3 — Variáveis e tipos</h3>
+          <p>
+            <strong>Variável</strong> é uma “caixinha” com nome onde guardamos um valor. No JavaScript usamos <code>let</code> (valor pode mudar)
+            ou <code>const</code> (valor fixo). Tipos básicos: <code>number</code> (número), <code>string</code> (texto), <code>boolean</code> (verdadeiro/falso),
+            <code>array</code> (lista) e <code>object</code> (registro com campos).
+          </p>
+          <pre><code>// exemplos
+let nome = "Ana";          // string
+let idade = 15;             // number
+let aluno = true;           // boolean
+let notas = [8, 7.5, 9];    // array (lista)
+let pessoa = { nome: "Ana", serie: "1º ano" }; // objeto</code></pre>
+          <div class="callout">
+            <p><strong>Dica:</strong> nomes de variáveis devem explicar o que guardam: <code>mediaTurma</code> é melhor que <code>m</code>.</p>
+          </div>
+        </article>
+        <article class="card">
+          <h3>1.4 — Operadores e expressões</h3>
+          <p>Aritméticos: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code> (resto). Comparação: <code>===</code>, <code>!==</code>, <code>&gt;</code>, <code>&lt;</code>, <code>&gt;=</code>, <code>&lt;=</code>. Lógicos: <code>&amp;&amp;</code> (E), <code>||</code> (OU), <code>!</code> (NÃO).</p>
+          <pre><code>let n1=8, n2=7, n3=9;
+let media = (n1 + n2 + n3) / 3; // 8
+let faltas = 4;
+let aprovado = media >= 7 && faltas <= 10; // true</code></pre>
+          <div class="quiz" data-id="q2" data-answer="c">
+            <p><strong>Quiz:</strong> No JavaScript, <code>===</code> compara…</p>
+            <label><input type="radio" name="q2" value="a"> Só o valor</label>
+            <label><input type="radio" name="q2" value="b"> Só o tipo</label>
+            <label><input type="radio" name="q2" value="c"> Valor <em>e</em> tipo</label>
+            <button class="btn small" onclick="verificarQuiz('q2')">Verificar</button>
+            <p class="feedback"></p>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>1.5 — Decisões (if/else)</h3>
+          <p>Com <code>if</code> o programa escolhe caminhos diferentes dependendo da condição.</p>
+          <pre><code>let idade = 16;
+if (idade >= 18) {
+  console.log("pode tirar CNH");
+} else {
+  console.log("ainda não pode");
+}</code></pre>
+        </article>
+        <article class="card">
+          <h3>1.6 — Repetições (for/while)</h3>
+          <p>Laços repetem uma ação várias vezes.</p>
+          <pre><code>for (let i=1; i<=5; i++){
+  console.log("Contagem:", i);
+}
+
+let senha = "";
+while (senha !== "1234"){
+  // aqui você pediria a senha ao usuário
+  senha = "1234"; // simulando
+}</code></pre>
+        </article>
+      </div>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>1.7 — Funções</h3>
+          <p>Funções agrupam passos e podem receber dados (parâmetros) e devolver resultado (<code>return</code>).</p>
+          <pre><code>function saudacao(nome){
+  return `Olá, ${nome}!`;
+}
+console.log(saudacao("CIEP-316"));</code></pre>
+        </article>
+        <article class="card">
+          <h3>1.8 — Arrays e objetos</h3>
+          <pre><code>let notas = [7, 8.5, 10];
+let media = (notas[0]+notas[1]+notas[2]) / notas.length;
+let aluno = { nome: "Rafa", turma: "2ºB", medias: notas };
+console.log(aluno.nome, media.toFixed(2));</code></pre>
+        </article>
+      </div>
+
+      <article class="card">
+        <h3>1.9 — Depuração (debug)</h3>
+        <p>Erros fazem parte. Use o <strong>Console</strong> do navegador (<kbd>F12</kbd>) e mensagens de log para investigar.</p>
+        <pre><code>console.log("antes do cálculo");
+let x = 10, y = 0;
+if (y === 0){
+  console.warn("cuidado: divisão por zero");
+} else {
+  console.log(x / y);
+}</code></pre>
+      </article>
+    </section>
+
+    <!-- Exemplos passo a passo -->
+    <section id="exemplos" class="section">
+      <div class="section-header">
+        <h2>2) Exemplos comentados (linha por linha)</h2>
+        <label class="check"><input type="checkbox" data-section="exemplos" onchange="toggleConcluida(this)"> Marcar como concluída</label>
+      </div>
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>2.1 — Conversor de temperatura</h3>
+          <p>Fórmula: <code>F = C * 9/5 + 32</code>.</p>
+          <pre><code>// 1) entrada
+a = 30 // graus Celsius
+// 2) processamento
+f = a * 9/5 + 32
+// 3) saída
+print(a, "°C =", f, "°F")</code></pre>
+          <button class="btn small" onclick="carregarExemplo('converter')">Abrir no Playground</button>
+        </article>
+        <article class="card">
+          <h3>2.2 — Par ou ímpar</h3>
+          <pre><code>let n = 7;
+if (n % 2 === 0) console.log("par");
+else console.log("ímpar");</code></pre>
+          <button class="btn small" onclick="carregarExemplo('parimpar')">Abrir no Playground</button>
+        </article>
+        <article class="card">
+          <h3>2.3 — Tabuada</h3>
+          <pre><code>let n = 6;
+for (let i=1;i<=10;i++){
+  console.log(`${n} x ${i} = ${n*i}`);
+}</code></pre>
+          <button class="btn small" onclick="carregarExemplo('tabuada')">Abrir no Playground</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Exercícios interativos -->
+    <section id="exercicios" class="section">
+      <div class="section-header">
+        <h2>3) Exercícios interativos</h2>
+        <label class="check"><input type="checkbox" data-section="exercicios" onchange="toggleConcluida(this)"> Marcar como concluída</label>
+      </div>
+
+      <div class="grid grid-3">
+        <article class="card">
+          <h3>3.1 — Média e situação</h3>
+          <p>Calcule a média de 3 notas e diga “aprovado” (≥7), “recuperação” (≥5) ou “reprovado”.</p>
+          <div class="runner-mini">
+            <label>n1 <input type="number" id="m1" value="6"></label>
+            <label>n2 <input type="number" id="m2" value="8"></label>
+            <label>n3 <input type="number" id="m3" value="7"></label>
+            <button class="btn small" onclick="exMedia()">Rodar</button>
+            <pre id="mout"></pre>
+          </div>
+        </article>
+        <article class="card">
+          <h3>3.2 — Contar vogais</h3>
+          <div class="runner-mini">
+            <label>Palavra <input id="palavra" value="programacao"></label>
+            <button class="btn small" onclick="exVogais()">Contar</button>
+            <pre id="vout"></pre>
+          </div>
+        </article>
+        <article class="card">
+          <h3>3.3 — Maior número da lista</h3>
+          <div class="runner-mini">
+            <label>Lista (separe por vírgulas)
+              <input id="lista" value="4,10,2,31,7">
+            </label>
+            <button class="btn small" onclick="exMaior()">Encontrar</button>
+            <pre id="lout"></pre>
+          </div>
+        </article>
+      </div>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>3.4 — FizzBuzz</h3>
+          <p>De 1 a 100, imprima “Fizz” se múltiplo de 3, “Buzz” se múltiplo de 5 e “FizzBuzz” se ambos.</p>
+          <button class="btn small" onclick="carregarExemplo('fizzbuzz')">Abrir no Playground</button>
+        </article>
+        <article class="card">
+          <h3>3.5 — Palíndromo</h3>
+          <p>Verifique se uma palavra é igual de trás pra frente.</p>
+          <button class="btn small" onclick="carregarExemplo('palindromo')">Abrir no Playground</button>
+        </article>
+      </div>
+
+      <div class="card">
+        <h3>3.6 — Quiz de fixação</h3>
+        <div class="quiz" data-id="q3" data-answer="d">
+          <p>Qual opção descreve melhor um array?</p>
+          <label><input type="radio" name="q3" value="a"> Um número inteiro</label>
+          <label><input type="radio" name="q3" value="b"> Um texto longo</label>
+          <label><input type="radio" name="q3" value="c"> Várias funções agrupadas</label>
+          <label><input type="radio" name="q3" value="d"> Uma lista ordenada de valores</label>
+          <button class="btn small" onclick="verificarQuiz('q3')">Verificar</button>
+          <p class="feedback"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Playground -->
+    <section id="playground" class="section">
+      <div class="section-header">
+        <h2>4) Playground integrado</h2>
+        <label class="check"><input type="checkbox" data-section="playground" onchange="toggleConcluida(this)"> Marcar como concluída</label>
+      </div>
+
+      <div class="runner card">
+        <div class="runner-controls">
+          <span class="pill">Modo</span>
+          <button class="btn" data-mode="js" onclick="setMode('js')">JavaScript</button>
+          <button class="btn" data-mode="htmlcss" onclick="setMode('htmlcss')">HTML + CSS</button>
+          <button class="btn" data-mode="full" onclick="setMode('full')">HTML + CSS + JS</button>
+          <button class="btn primary" onclick="runCode()">▶ Executar</button>
+          <button class="btn" onclick="limparSaida()">🧽 Limpar saída</button>
+          <div class="spacer"></div>
+          <button class="btn" onclick="carregarExemplo('ola')">Ex: Olá</button>
+          <button class="btn" onclick="carregarExemplo('tabuada')">Ex: Tabuada</button>
+          <button class="btn" onclick="carregarExemplo('cardhtml')">Ex: Card HTML</button>
+        </div>
+
+        <div id="inputs" class="runner-inputs">
+          <!-- preenchido via JS -->
+        </div>
+
+        <div class="runner-output">
+          <h4>Saída</h4>
+          <iframe id="output" sandbox="allow-scripts" title="Saída do código"></iframe>
+        </div>
+      </div>
+
+      <p class="muted">Segurança: o código roda <em>isolado</em> em um iframe e não acessa este site. Em celulares, use o modo horizontal para mais espaço.</p>
+    </section>
+
+    <!-- HTML & CSS -->
+    <section id="htmlcss" class="section">
+      <div class="section-header">
+        <h2>5) HTML & CSS: estrutura e estilo</h2>
+        <label class="check"><input type="checkbox" data-section="htmlcss" onchange="toggleConcluida(this)"> Marcar como concluída</label>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>5.1 — HTML (estrutura)</h3>
+          <p>HTML define a “ossatura” da página: títulos, parágrafos, links, imagens, listas, formulários.</p>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8"&gt;
+    &lt;title&gt;Minha Página&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Olá, CIEP-316!&lt;/h1&gt;
+    &lt;p&gt;Este é um parágrafo.&lt;/p&gt;
+    &lt;a href="#"&gt;um link&lt;/a&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <p>Tags comuns: <code>&lt;h1..h6&gt;</code>, <code>&lt;p&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;img&gt;</code>, <code>&lt;ul&gt;</code>/<code>&lt;ol&gt;</code>, <code>&lt;li&gt;</code>, <code>&lt;div&gt;</code>, <code>&lt;span&gt;</code>, <code>&lt;button&gt;</code>, <code>&lt;input&gt;</code>.</p>
+        </article>
+        <article class="card">
+          <h3>5.2 — CSS (estilo)</h3>
+          <p>CSS controla cores, fontes, espaçamento e layout.</p>
+          <pre><code>/* Seletores */
+p { color: #334155; }         /* por tag */
+.card { padding: 12px; }      /* por classe */
+#principal { max-width:900px} /* por id */
+
+/* Layout moderno */
+.container { display: grid; gap: 16px; }
+</code></pre>
+          <p>Conceitos-chave: <em>box model</em>, <code>flex</code>, <code>grid</code>, responsividade com <code>@media</code>.</p>
+        </article>
+      </div>
+
+      <article class="card">
+        <h3>5.3 — Estrutura típica de um site</h3>
+        <table class="table">
+          <thead>
+            <tr><th>Parte</th><th>Função</th><th>Exemplo</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Header</strong></td><td>Logo, menu</td><td>&lt;header&gt; + &lt;nav&gt;</td></tr>
+            <tr><td><strong>Main</strong></td><td>Conteúdo principal</td><td>&lt;main&gt; com seções</td></tr>
+            <tr><td><strong>Footer</strong></td><td>Créditos, links</td><td>&lt;footer&gt;</td></tr>
+            <tr><td><strong>CSS</strong></td><td>Estilos</td><td>arquivo .css ou &lt;style&gt;</td></tr>
+            <tr><td><strong>JS</strong></td><td>Interatividade</td><td>arquivo .js ou &lt;script&gt;</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>5.4 — Exemplo completo (mini site)</h3>
+          <pre><code>&lt;style&gt;
+body{font-family:sans-serif}
+header{background:#0ea5e9;color:white;padding:10px}
+nav a{color:white;margin-right:8px}
+&lt;/style&gt;
+&lt;header&gt;
+  &lt;nav&gt;
+    &lt;a href="#"&gt;Início&lt;/a&gt; | &lt;a href="#sobre"&gt;Sobre&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;h1&gt;Meu Site&lt;/h1&gt;
+  &lt;p&gt;Bem-vindo!&lt;/p&gt;
+&lt;/main&gt;</code></pre>
+          <button class="btn small" onclick="carregarExemplo('minisite')">Abrir no Playground</button>
+        </article>
+        <article class="card">
+          <h3>5.5 — Desafio de layout (Grid)</h3>
+          <pre><code>&lt;style&gt;
+.grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.card{border:1px solid #e5e7eb;padding:10px;border-radius:10px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+&lt;/style&gt;
+&lt;div class="grid"&gt;
+  &lt;div class="card"&gt;A&lt;/div&gt;
+  &lt;div class="card"&gt;B&lt;/div&gt;
+  &lt;div class="card"&gt;C&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+          <button class="btn small" onclick="carregarExemplo('grid')">Abrir no Playground</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Front-end x Back-end -->
+    <section id="frontend-backend" class="section">
+      <div class="section-header">
+        <h2>6) Front‑end x Back‑end</h2>
+        <label class="check"><input type="checkbox" data-section="fe-be" onchange="toggleConcluida(this)"> Marcar como concluída</label>
+      </div>
+      <div class="grid grid-2">
+        <article class="card">
+          <h3>Front‑end</h3>
+          <ul>
+            <li>Roda no navegador; tecnologias: <strong>HTML</strong>, <strong>CSS</strong>, <strong>JS</strong>.</li>
+            <li>Cuida de layout, acessibilidade, interação e consumo de APIs.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h3>Back‑end</h3>
+          <ul>
+            <li>Roda no servidor; regras de negócio, segurança, banco de dados.</li>
+            <li>Linguagens comuns: Node.js, Python, Java, C#, PHP, Go, Ruby.</li>
+          </ul>
+        </article>
+      </div>
+      <article class="card">
+        <h3>Exemplo de troca via API</h3>
+        <pre><code>// Front-end: pede dados
+fetch('/api/alunos')
+  .then(r => r.json())
+  .then(lista => console.log(lista));
+
+// Back-end (idéia): devolve JSON
+GET /api/alunos → [ {"nome":"Ana","turma":"1A"}, {"nome":"Rafa","turma":"2B"} ]</code></pre>
+      </article>
+    </section>
+
+    <!-- Linguagens -->
+    <section id="linguagens" class="section">
+      <div class="section-header">
+        <h2>7) Panorama de linguagens</h2>
+        <label class="check"><input type="checkbox" data-section="linguagens" onchange="toggleConcluida(this)"> Marcar como concluída</label>
+      </div>
+      <div class="grid grid-3">
+        <article class="card"><h3>JavaScript</h3><p>Web (navegador) e servidor (Node.js). Ótima para começar.</p><pre><code>console.log("Olá, mundo!");</code></pre></article>
+        <article class="card"><h3>Python</h3><p>Sintaxe simples; dados, automação e web (Django/Flask).</p><pre><code>print("Olá, mundo!")</code></pre></article>
+        <article class="card"><h3>Java</h3><p>Robusta, usada em sistemas grandes e Android.</p><pre><code>class Main{public static void main(String[]a){System.out.println("Olá");}}</code></pre></article>
+        <article class="card"><h3>C#</h3><p>Com .NET; desktop, web e jogos (Unity).</p><pre><code>Console.WriteLine("Olá, mundo!");</code></pre></article>
+        <article class="card"><h3>PHP</h3><p>Muito presente na Web (WordPress).</p><pre><code>&lt;?php echo "Olá"; ?&gt;</code></pre></article>
+        <article class="card"><h3>Outras</h3><p>Go, Ruby, C/C++, Kotlin, Swift, Rust… o importante é a lógica.</p></article>
+      </div>
+    </section>
+
+    <!-- Glossário -->
+    <section id="glossario" class="section">
+      <div class="section-header">
+        <h2>8) Glossário rápido</h2>
+        <label class="check"><input type="checkbox" data-section="glossario" onchange="toggleConcluida(this)"> Marcar como concluída</label>
+      </div>
+      <div class="grid grid-3">
+        <div class="card"><strong>Algoritmo</strong><p>Passos para resolver um problema.</p></div>
+        <div class="card"><strong>Variável</strong><p>Espaço que guarda um valor.</p></div>
+        <div class="card"><strong>Função</strong><p>Bloco de código reaproveitável.</p></div>
+        <div class="card"><strong>Array</strong><p>Lista ordenada de valores.</p></div>
+        <div class="card"><strong>Objeto</strong><p>Pares chave → valor.</p></div>
+        <div class="card"><strong>Bug</strong><p>Erro no software.</p></div>
+        <div class="card"><strong>API</strong><p>Interface para conversar com um sistema.</p></div>
+        <div class="card"><strong>Framework</strong><p>Ferramentas para acelerar o desenvolvimento.</p></div>
+        <div class="card"><strong>Banco de Dados</strong><p>Local para armazenar informações.</p></div>
+      </div>
+    </section>
+
+    <!-- Recursos e Roteiro -->
+    <section id="recursos" class="section">
+      <div class="section-header">
+        <h2>9) Roteiro de aula + avaliação</h2>
+        <label class="check"><input type="checkbox" data-section="recursos" onchange="toggleConcluida(this)"> Marcar como concluída</label>
+      </div>
+      <article class="card">
+        <h3>Roteiro sugerido (90 minutos)</h3>
+        <ol>
+          <li>Aquecimento (5 min): algoritmo do suco (coletivo).</li>
+          <li>Conceitos (20 min): variáveis, if, laços (demonstração).</li>
+          <li>Playground (25 min): exemplos + testes livres.</li>
+          <li>Exercícios (25 min): 3.1–3.5 em duplas.</li>
+          <li>Apresentações (10 min): 2 duplas mostram soluções.</li>
+          <li>Fechamento (5 min): front‑end x back‑end + próximos passos.</li>
+        </ol>
+      </article>
+      <article class="card">
+        <h3>Rubrica simples de avaliação</h3>
+        <table class="table">
+          <thead><tr><th>Criterio</th><th>Iniciante</th><th>Intermediário</th><th>Ótimo</th></tr></thead>
+          <tbody>
+            <tr><td>Compreensão</td><td>Reconhece termos</td><td>Aplica com ajuda</td><td>Explica e aplica sozinho(a)</td></tr>
+            <tr><td>Prática</td><td>Executa exemplos</td><td>Adapta exemplos</td><td>Cria solução própria</td></tr>
+            <tr><td>Depuração</td><td>Identifica erro</td><td>Usa console/log</td><td>Propõe correção</td></tr>
+            <tr><td>Trabalho em equipe</td><td>Participa pouco</td><td>Colabora</td><td>Lidera e ajuda colegas</td></tr>
+          </tbody>
+        </table>
+      </article>
+      <div class="cta">
+        <button class="btn" onclick="imprimirPDF()">🖨️ Gerar PDF deste conteúdo</button>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      Feito para o CIEP‑316 · Use e adapte livremente.
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
